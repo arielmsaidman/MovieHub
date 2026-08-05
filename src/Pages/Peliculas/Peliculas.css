@@ -1,0 +1,15 @@
+.boton-buscar button {
+    width: 100%;
+    padding: 15px;
+    background-color: #EC1C1A;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+
+.boton-buscar button:hover {
+    background-color: #b91413;
+}

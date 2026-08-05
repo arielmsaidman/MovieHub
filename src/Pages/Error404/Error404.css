@@ -1,0 +1,14 @@
+.no-found{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+
+.foto-pochoclo {
+    width: 250px;
+}
+
+.titulo-error {
+    color: white;
+}

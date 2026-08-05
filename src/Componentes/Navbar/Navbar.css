@@ -1,0 +1,14 @@
+.titulo{
+    /* justify-content: ; */
+    display: flex;
+    align-items: center;
+    gap: 100px;
+    margin-left: 50px;
+}
+
+.buscar-y-lista{
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 30px;
+}

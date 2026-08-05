@@ -1,0 +1,23 @@
+.imagen{
+    display: flex;
+    justify-content: space-between; /* Separa los elementos */
+    align-items: center;            /* Centra verticalmente */
+    background-color: black;
+    padding: 40px;
+}
+
+.boton-login{
+    width: 180px;
+    padding: 15px;
+    background-color: #EC1C1A;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 17px;
+    cursor: pointer;
+    margin-top: 5rem;
+}
+
+.boton-login:hover {
+    background-color: #b91413;
+}
