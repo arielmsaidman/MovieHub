@@ -18,6 +18,11 @@ const MiLista = () => {
 
     return (
         <>
+        {
+            MiLista.length > 0 && (
+        
+        <>
+      
         <h2>Mi Lista ({MiLista.length})</h2>
 
         <div className="grid">
@@ -35,7 +40,12 @@ const MiLista = () => {
             onClick={Clear}
             variant="contained"
             sx={{
-                mt: 2,
+               pt: 0.5,
+                mt: 1,
+                pl: 1,
+                pr: 0,
+                ml: 30,
+                mr: 30,
                 backgroundColor: "#b65704",
                 boxShadow: 3,
                 "&:hover": {
@@ -44,8 +54,14 @@ const MiLista = () => {
             }}
             >
             Vaciar Mi Lista
-            </Button>
-        </>       
+            </Button>   
+          </>
+
+            )
+
+        }
+
+    </>     
     );
 };
 

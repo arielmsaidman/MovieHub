@@ -4,6 +4,7 @@
     align-items: center;            /* Centra verticalmente */
     background-color: black;
     padding: 40px;
+    border-bottom: 15px solid rgb(156, 0, 0);
 }
 
 .boton-login{

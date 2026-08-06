@@ -11,30 +11,69 @@ import Peliculas from "./Pages/Peliculas/Peliculas";
 import Series from "./Pages/Series/Series";
 import MiLista from "./Componentes/MiLista/MiLista";
 import { MiListaProvider } from "./context/MiListaContext";
-
+import { SearchProvider } from "./context/SearchContext";
+import BuscarContenido from "./pages/BuscarContenido/BuscarContenido";
+import LayoutConNavbar from "./Layout/LayoutConNavbar";
+import LayoutPublico from "./Layout/LayoutPublico";
 
 function App() {
-  return (
-    <>
-    <MiListaProvider>
-      <Header />
-      <Navbar />
 
-      <Routes>
-        <Route path="/" element={<NoLogin />} />
-        <Route path="/registrarse" element={<Login />} />        
-        <Route path="/home" element={<Home />} /> 
-        <Route path="/peliculas" element={<Peliculas />} /> 
-        <Route path="/series" element={<Series />} /> 
-        <Route path="*" element={<Error404 />} />
-      </Routes>
-      
-      <MiLista />
-      <Footer />
-    </MiListaProvider>  
-      
-    </>
+  return (
+    <MiListaProvider>
+      <SearchProvider>
+
+        <Routes>
+          {/* Rutas con Navbar */}
+          <Route element={<LayoutConNavbar />}>           
+            <Route path="/home" element={<Home />}/>
+            <Route path="/buscar" element={<BuscarContenido />}/>
+            <Route path="/peliculas" element={<Peliculas />}/>
+            <Route path="/series" element={<Series />}/>
+          </Route>
+
+          {/* Rutas sin Navbar */}
+          <Route element={<LayoutPublico />}>
+            <Route path="/" element={<NoLogin />}/>
+            <Route path="/registrarse" element={<Login />}/>
+            <Route path="*" element={<Error404 />}/>
+          </Route>
+
+        </Routes>
+
+      </SearchProvider>
+    </MiListaProvider>
   );
 }
 
+
 export default App;
+// function App() {
+//   return (
+//     <>
+//     <MiListaProvider>
+//       <SearchProvider>
+
+//         <Header />
+//         <Navbar />
+
+//         <Routes>
+//           <Route path="/buscar"element={<BuscarContenido/>}/>
+//           <Route path="/" element={<NoLogin />} />
+//           <Route path="/registrarse" element={<Login />} />        
+//           <Route path="/home" element={<Home />} /> 
+//           <Route path="/peliculas" element={<Peliculas />} /> 
+//           <Route path="/series" element={<Series />} /> 
+//           <Route path="*" element={<Error404 />} />
+//         </Routes>
+        
+      
+//         <Footer />
+
+//       </SearchProvider>
+//     </MiListaProvider>  
+      
+//     </>
+//   );
+// }
+
+// export default App;

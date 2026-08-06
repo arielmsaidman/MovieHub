@@ -5,6 +5,8 @@ import FormControl from '@mui/material/FormControl';
 // import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Select from '@mui/material/Select';
 import './Series.css';
+import MiLista from "../../Componentes/MiLista/MiLista"
+import Navbar from '../../Componentes/Navbar/Navbar';
 
 const Series = () => {
 
@@ -16,6 +18,9 @@ const Series = () => {
 
   return (
     <div>
+
+      {/* <Navbar /> */}
+
       <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
         <InputLabel id="demo-simple-select-standard-label">Series</InputLabel>
         <Select
@@ -33,7 +38,11 @@ const Series = () => {
         </Select>
       </FormControl>
       <button className='boton-buscar'>Buscar</button>
+    
+  
+    
     </div>
+    
   );
 };
 export default Series;

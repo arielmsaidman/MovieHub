@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -9,6 +10,9 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import { Link } from "react-router-dom";
 import "./Navbar.css";
+import { SearchContext } from '../../context/SearchContext';
+import { useNavigate } from "react-router-dom";
+import { MiListaContext } from '../../context/MiListaContext';
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -53,6 +57,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const Navbar = () => {
+
+const navigate = useNavigate();
+const { MiLista } = useContext(MiListaContext);
+
+const { search, setSearch } = useContext(SearchContext);
+
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
@@ -65,6 +75,24 @@ const Navbar = () => {
           >
           
             <div className='titulo'>
+
+              <Typography
+                variant="h6"
+                noWrap
+                component="div"
+                sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+              >
+                <Link
+                  to="/home"
+                  style={{
+                    textDecoration: "none",
+                    color: "white",
+                  }}
+                >
+                  Home
+                </Link>
+              </Typography>
+
               <Typography
                 variant="h6"
                 noWrap
@@ -110,34 +138,57 @@ const Navbar = () => {
                 </SearchIconWrapper>
 
                 <StyledInputBase
-                  placeholder="Buscar..."
-                  inputProps={{ "aria-label": "search" }}
+                    placeholder="Buscar..."
+                    value={search}
+                    onChange={(el)=>{
+                      const valor = el.target.value;
+                      setSearch(valor);
+
+                      if(valor.trim() !== ""){
+                          navigate("/buscar");
+                      } else {
+                        navigate("/home");
+                      }
+                    }}
+                    inputProps={{ "aria-label": "search" }}
                 />
+
               </Search>
 
               <Typography
-                variant="h6"
-                noWrap
-                component="div"
-                sx={{
-                  pt: 0.5,
-                  pl: 4,
-                  pr: 4,
-                  ml: 2,
-                  backgroundColor: "#EC1C1A",
-                  borderRadius: 1,
-                  display: { xs: "none", sm: "block" },
+                  variant="h6"
+                  onClick={() => {
                   
-                  "&:hover": {
-                      backgroundColor: "#b91413",
-                      cursor: "pointer",
-                    },
-                  }
-                }
+                    if(MiLista.length === 0){
+                      alert("Lista vacía");
+                      return;
+                    }
+
+                      const elemento = document.getElementById("mi-lista");
+
+                      if(elemento){
+                          elemento.scrollIntoView({
+                              behavior: "smooth"
+                          });
+                      }
+                  }}
+                  sx={{
+                      pt:0.5,
+                      pl:4,
+                      pr:4,
+                      ml:2,
+                      backgroundColor:"#EC1C1A",
+                      borderRadius:1,
+                      color:"white",
+                      "&:hover":{
+                          backgroundColor:"#b91413",
+                          cursor:"pointer",
+                      }
+                  }}
               >
                 Mi lista
-                {/* Documentales, tendencias */}
               </Typography>
+
             </div>
 
           </Toolbar>
