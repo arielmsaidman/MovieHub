@@ -3,6 +3,7 @@ import CardMiLista from '../CardMiLista/CardMiLista';
 import { useContext } from "react";
 import { MiListaContext } from "../../context/MiListaContext";
 import Button from "@mui/material/Button";
+import "./MiLista.css";
 
 const MiLista = () => {
  const { contenido, loading, error } = useFetch();
@@ -22,8 +23,12 @@ const MiLista = () => {
             MiLista.length > 0 && (
         
         <>
-      
-        <h2>Mi Lista ({MiLista.length})</h2>
+
+        <div className="lista">
+            <h2>Mi Lista</h2>
+            <span>{MiLista.length}</span>
+        </div>
+        {/* <h2 className="lista">Mi Lista | {MiLista.length}</h2> */}
 
         <div className="grid">
             {
@@ -40,10 +45,10 @@ const MiLista = () => {
             onClick={Clear}
             variant="contained"
             sx={{
-               pt: 0.5,
-                mt: 1,
-                pl: 1,
-                pr: 0,
+               pt: 1,
+                mt: 2,
+                pl: 30,
+                pr: 30,
                 ml: 30,
                 mr: 30,
                 backgroundColor: "#b65704",
@@ -54,13 +59,11 @@ const MiLista = () => {
             }}
             >
             Vaciar Mi Lista
-            </Button>   
+        </Button>   
           </>
-
-            )
-
+        
+        )
         }
-
     </>     
     );
 };
