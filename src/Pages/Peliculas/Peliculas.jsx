@@ -1,45 +1,64 @@
-import * as React from 'react';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-// import Select, { SelectChangeEvent } from '@mui/material/Select';
-import Select from '@mui/material/Select';
-import './Peliculas.css';
-import MiLista from "../../Componentes/MiLista/MiLista"
-import Navbar from '../../Componentes/Navbar/Navbar';
+import * as React from "react";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import "./Peliculas.css";
+import Card from "../../Componentes/Card/Card";
+import { useFetch } from "../../hooks/useFetch";
+import Generos from "../../Componentes/Generos/Generos";
+
 
 const Peliculas = () => {
+  const { contenido, loading, error } = useFetch();
 
-  const [Peliculas, setPeliculas] = React.useState('');
+  const [genero, setGenero] = React.useState("");
 
   const handleChange = (event) => {
-  setPeliculas(event.target.value);
-};
+    setGenero(event.target.value);
+  };
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>{error}</p>;
+  }
+
+  // Mostrar solamente películas
+  const peliculas = contenido.filter(
+    (item) => item.tipo === "pelicula"
+  );
+
+  // Filtrar por género
+  const peliculasFiltradas = genero
+  ? peliculas.filter((item) =>
+      Array.isArray(item.genero) &&
+      item.genero.includes(genero)
+    )
+  : peliculas;
 
   return (
     <div>
 
-      {/* <Navbar /> */}
+      <Generos
+        genero={genero}
+        handleChange={handleChange}
+      />
 
-      <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-        <InputLabel id="demo-simple-select-standard-label">Peliculas</InputLabel>
-        <Select
-          labelId="demo-simple-select-standard-label"
-          id="demo-simple-select-standard"
-          value={Peliculas}
-          onChange={handleChange}
-        >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={10}>Terror</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
-      </FormControl>
-      <button className='boton-buscar'>Buscar</button>
+      <div className="grid">
+        {peliculasFiltradas.map((item) => (
+          <Card
+            key={item.id}
+            data={item}
+          />
+        ))}
+      </div>
 
     </div>
   );
 };
+
 export default Peliculas;
+

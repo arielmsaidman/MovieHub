@@ -4,9 +4,9 @@ import { useFetch } from "../../hooks/useFetch";
 
 const FullList = () => {
 
-    const { users, loading, error } = useFetch();
+    const { contenido, loading, error } = useFetch();
 
-    console.log("users:", users);
+    console.log("users:", contenido);
     console.log("loading:", loading);
     console.log("error:", error);
 
@@ -15,47 +15,16 @@ const FullList = () => {
     if (error) return <p>{error}</p>;
 
     return (
-        <div className="grid">
-            {
-                users.map((user) => (
-                    <Card 
-                        key={user.id} 
-                        data={user} 
-                    />
-                ))
-            }
-        </div>
-    );
+  <div className="grid">
+    {contenido.map((item) => (
+      <Card
+        key={item.id}
+        data={item}
+      />
+    ))}
+  </div>
+);
 }
 
 export default FullList;
 
-// import React, {useState, useEffect} from 'react'
-// // import axios from 'axios';
-// import Card from '../Card/Card';
-// import "./FullList.css"
-// // import Spinner from '../Spinner/Spinner';
-
-// //custom hook
-// import {useFetch} from "../../hooks/useFetch";
-
-// const FullList = () => {
-    
-//     const {users, loading, error} = useFetch();
-    
-//     if(loading)  return <p>loading</p>;
-
-//     if (error) return <p>{error}</p>;
-
-//     return (
-//         <div className='grid'>
-            
-//            {users.map((user) => {
-//              return <Card key={user.id} data={user} />;
-//             })}
-            
-//         </div>
-//     )
-// }
-
-// export default FullList

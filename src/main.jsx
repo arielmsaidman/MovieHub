@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./App.jsx";
 import { SearchProvider } from "./context/SearchContext";
+// import "./CargarFirebase"; solo lo use para cargar la base del Firebase
 
 createRoot(document.getElementById("root")).render(
 <SearchProvider>

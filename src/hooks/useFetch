@@ -5,38 +5,44 @@
 // ✅ Permite manejar loading y error de forma consistente.
 // ✅ Si necesitás cambiar cómo hacés las peticiones, lo hacés en un solo lugar.
 
-import React, {useState, useEffect} from 'react'
-import axios from 'axios';
+import { useState, useEffect } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../Componentes/firebase/firebase";
 
-export const useFetch = ()=> {
-    const [users, setUsers] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState("");
-    const apiUrl = import.meta.env.VITE_API_URL;
+export const useFetch = () => {
+  const [contenido, setContenido] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-    useEffect(() => {
-            
-            const fectchApiUsers = async () => {
-                try{
-                    setLoading(true);
-                
-                    const {data}= await axios(apiUrl);
-                    setUsers(data);
+  useEffect(() => {
+    const fetchContenido = async () => {
+      try {
+        setLoading(true);
 
-                } catch(error){
-                    setError(error.message);
-                } finally{
-                    setLoading(false);
-                }
-            }
-            //invocar async call function
-            fectchApiUsers();
+        const querySnapshot = await getDocs(
+          collection(db, "contenido")
+        );
 
-    }, []);
+        const datos = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
 
-    return{
-        users,
-        loading,
-        error,
+        setContenido(datos);
+
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
     };
+
+    fetchContenido();
+  }, []);
+
+  return {
+    contenido,
+    loading,
+    error,
+  };
 };

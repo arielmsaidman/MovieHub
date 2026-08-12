@@ -7,13 +7,15 @@ import { MiListaContext } from "../../context/MiListaContext";
 
 
 const Card = ({ data }) => {
+  console.log("CARD:", data);
 
  const { AddItem } = useContext(MiListaContext);
 
   return (
+    
     <MuiCard 
       sx={{backgroundColor: "#979595",
-          maxWidth: 245,
+          maxWidth: 345,
           mt:1,
           pb:0.1,
           transition: "transform 0.3s ease, box-shadow 0.3s ease",
@@ -24,22 +26,36 @@ const Card = ({ data }) => {
       }}>
 
       <CardMedia
-        sx={{ height: 250 }}
-        image={data.avatar_url}
-        title={data.login}
+        sx={{ height: 350 }}
+        image={data.imagen}
+        // title={data.login}
       />
 
-      <CardContent sx={{ height: 120 }}>
+      <CardContent sx={{ height: 130 }}>
 
-        <Typography gutterBottom variant="h5">
-        {data.login}
+        <Typography variant="body2">
+        {data.nombre}
         </Typography>
 
         <Typography variant="body2">
-          ID: {data.id}
+          {data.tipo === "pelicula"
+            ? `duracion: ${data.duracion} min`
+            : `duracion: ${data.capitulos}cap (${data.temporadas} temp)`}
         </Typography>
 
-         <Typography
+        <Typography variant="body2">
+        {data.anio}
+        </Typography>
+
+        <Typography variant="body2">
+          {data.genero?.join(" | ")}
+        </Typography>
+
+
+
+
+
+        <Typography
             variant="h6"
             noWrap
             onClick={() => AddItem(data)}

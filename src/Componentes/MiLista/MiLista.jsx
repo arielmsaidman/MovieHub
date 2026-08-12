@@ -5,10 +5,10 @@ import { MiListaContext } from "../../context/MiListaContext";
 import Button from "@mui/material/Button";
 
 const MiLista = () => {
- const { users, loading, error } = useFetch();
+ const { contenido, loading, error } = useFetch();
  const { MiLista, Clear } = useContext(MiListaContext);
 
-    console.log("users:", users);
+    console.log("users:", contenido);
     console.log("loading:", loading);
     console.log("error:", error);
 
@@ -29,7 +29,7 @@ const MiLista = () => {
             {
             MiLista.map((item) => (
                 <CardMiLista
-                key={item.id}
+                key={item.nombre}
                 data={item}
                 />
             ))

@@ -163,7 +163,6 @@ const { search, setSearch } = useContext(SearchContext);
                       alert("Lista vacía");
                       return;
                     }
-
                       const elemento = document.getElementById("mi-lista");
 
                       if(elemento){

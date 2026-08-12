@@ -13,3 +13,19 @@
 .titulo-error {
     color: white;
 }
+
+button {
+    width: 90%%;
+    padding: 10px;
+    background-color: #EC1C1A;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+
+button:hover {
+    background-color: #b91413;
+}
