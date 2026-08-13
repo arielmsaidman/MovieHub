@@ -27,7 +27,7 @@ export const useFetch = () => {
 
       const consulta = query(
         collection(db, "contenido"),
-        limit(16)
+        limit(15)
       );
 
       const querySnapshot = await getDocs(consulta);
@@ -58,7 +58,7 @@ export const useFetch = () => {
       const consulta = query(
         collection(db, "contenido"),
         startAfter(ultimoDoc),
-        limit(16)
+        limit(15)
       );
 
       const querySnapshot = await getDocs(consulta);
