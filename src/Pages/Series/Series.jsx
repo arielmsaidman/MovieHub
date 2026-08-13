@@ -7,38 +7,28 @@ import "./Series.css";
 import Card from "../../Componentes/Card/Card";
 import { useFetch } from "../../hooks/useFetch";
 import Generos from "../../Componentes/Generos/Generos";
+import Paginacion from "../../Componentes/Paginacion/Paginacion";
+import Loading from "../../Componentes/Loading/Loading";
 
- const Series = () => {
 
-  const { contenido, loading, error } = useFetch();
+const Series = () => {
 
-  const [genero, setGenero] = React.useState("");
+ const [genero, setGenero] = React.useState("");
+
+const {contenido, loading, error, paginaActual, haySiguiente, siguientePagina, anteriorPagina,
+} = useFetch("serie", genero);
 
   const handleChange = (event) => {
     setGenero(event.target.value);
   };
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <Loading />;
   }
 
   if (error) {
     return <p>{error}</p>;
   }
-
-  // Mostrar solamente películas
-  const series = contenido.filter(
-    (item) => item.tipo === "serie"
-  );
-
-  // Filtrar por género
-  const seriesFiltradas = genero
-  ? series.filter((item) =>
-      Array.isArray(item.genero) &&
-      item.genero.includes(genero)
-    )
-  : series;
-
 
   return (
     <div>
@@ -49,13 +39,20 @@ import Generos from "../../Componentes/Generos/Generos";
       />
 
       <div className="grid">
-        {seriesFiltradas.map((item) => (
+        {contenido.map((item) => (
           <Card
             key={item.id}
             data={item}
           />
         ))}
       </div>
+
+      <Paginacion
+        paginaActual={paginaActual}
+        haySiguiente={haySiguiente}
+        siguientePagina={siguientePagina}
+        anteriorPagina={anteriorPagina}
+      />
 
     </div>
   );

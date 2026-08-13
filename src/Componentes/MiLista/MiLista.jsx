@@ -19,6 +19,7 @@ const MiLista = () => {
 
     return (
         <>
+        
         {
             MiLista.length > 0 && (
         
@@ -41,25 +42,28 @@ const MiLista = () => {
             }
         </div>
         
-        <Button
-            onClick={Clear}
-            variant="contained"
-            sx={{
-               pt: 1,
-                mt: 2,
-                pl: 30,
-                pr: 30,
-                ml: 30,
-                mr: 30,
+        <div style={{ display: "flex", justifyContent: "center" }}>
+            <Button
+                onClick={Clear}
+                variant="contained"
+                sx={{
+                pt: 1,
+                            mt: 2,
+                            pl: 30,
+                            pr: 30,
+                            ml: 30,
+                            mr: 30,
                 backgroundColor: "#b65704",
                 boxShadow: 3,
                 "&:hover": {
-                backgroundColor: "#ff8c08",
+                    backgroundColor: "#ff8c08",
                 },
-            }}
+                }}
             >
-            Vaciar Mi Lista
-        </Button>   
+                Vaciar Mi Lista
+            </Button>
+        </div>
+       
           </>
         
         )
@@ -69,3 +73,8 @@ const MiLista = () => {
 };
 
 export default MiLista;
+
+// <Alert severity="success">
+//   <AlertTitle>Success</AlertTitle>
+//   This is a success Alert with an encouraging title.
+// </Alert>

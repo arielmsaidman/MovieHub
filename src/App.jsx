@@ -47,33 +47,3 @@ function App() {
 
 
 export default App;
-// function App() {
-//   return (
-//     <>
-//     <MiListaProvider>
-//       <SearchProvider>
-
-//         <Header />
-//         <Navbar />
-
-//         <Routes>
-//           <Route path="/buscar"element={<BuscarContenido/>}/>
-//           <Route path="/" element={<NoLogin />} />
-//           <Route path="/registrarse" element={<Login />} />        
-//           <Route path="/home" element={<Home />} /> 
-//           <Route path="/peliculas" element={<Peliculas />} /> 
-//           <Route path="/series" element={<Series />} /> 
-//           <Route path="*" element={<Error404 />} />
-//         </Routes>
-        
-      
-//         <Footer />
-
-//       </SearchProvider>
-//     </MiListaProvider>  
-      
-//     </>
-//   );
-// }
-
-// export default App;

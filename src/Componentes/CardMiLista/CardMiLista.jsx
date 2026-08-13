@@ -75,7 +75,7 @@ const { removeItem } = useContext(MiListaContext);
             }
             >
             Eliminar de Mi lista
-            {/* Documentales, tendencias */}
+            
           </Typography>
 
       </CardContent>

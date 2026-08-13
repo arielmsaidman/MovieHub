@@ -1,45 +1,29 @@
-
-
 import * as React from "react";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 import "./Peliculas.css";
 import Card from "../../Componentes/Card/Card";
 import { useFetch } from "../../hooks/useFetch";
 import Generos from "../../Componentes/Generos/Generos";
-
+import Paginacion from "../../Componentes/Paginacion/Paginacion";
+import Loading from "../../Componentes/Loading/Loading";
 
 const Peliculas = () => {
-  const { contenido, loading, error } = useFetch();
 
   const [genero, setGenero] = React.useState("");
+
+  const {contenido, loading, error, paginaActual, haySiguiente, siguientePagina, anteriorPagina,
+  } = useFetch("pelicula", genero);
 
   const handleChange = (event) => {
     setGenero(event.target.value);
   };
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <Loading />;
   }
 
   if (error) {
     return <p>{error}</p>;
   }
-
-  // Mostrar solamente películas
-  const peliculas = contenido.filter(
-    (item) => item.tipo === "pelicula"
-  );
-
-  // Filtrar por género
-  const peliculasFiltradas = genero
-  ? peliculas.filter((item) =>
-      Array.isArray(item.genero) &&
-      item.genero.includes(genero)
-    )
-  : peliculas;
 
   return (
     <div>
@@ -50,13 +34,20 @@ const Peliculas = () => {
       />
 
       <div className="grid">
-        {peliculasFiltradas.map((item) => (
+        {contenido.map((item) => (
           <Card
             key={item.id}
             data={item}
           />
         ))}
       </div>
+
+      <Paginacion
+        paginaActual={paginaActual}
+        haySiguiente={haySiguiente}
+        siguientePagina={siguientePagina}
+        anteriorPagina={anteriorPagina}
+      />
 
     </div>
   );

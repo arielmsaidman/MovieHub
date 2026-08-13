@@ -1,0 +1,12 @@
+.loading {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #808080;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  padding-top: 50px;
+  box-sizing: border-box;
+}

@@ -1,0 +1,33 @@
+.paginacion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 40px;
+  background-color: black;
+  padding-top:30px;
+  border-top: 2px solid #b91413;
+}
+
+.paginacion .btn {
+  width: 120px;
+  height: 40px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.paginacion .btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.paginacion .btn:disabled {
+  opacity: 0.6;
+}
+
+.btn-numero{
+   width: 120px;
+   background-color: #b91413;
+   align-items: center; 
+}

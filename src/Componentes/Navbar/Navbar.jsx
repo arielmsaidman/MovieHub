@@ -13,6 +13,7 @@ import "./Navbar.css";
 import { SearchContext } from '../../context/SearchContext';
 import { useNavigate } from "react-router-dom";
 import { MiListaContext } from '../../context/MiListaContext';
+import { NavLink } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -58,145 +59,144 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const Navbar = () => {
 
-const navigate = useNavigate();
-const { MiLista } = useContext(MiListaContext);
+  const navigate = useNavigate();
+  const { MiLista } = useContext(MiListaContext);
 
-const { search, setSearch } = useContext(SearchContext);
+  const { search, setSearch } = useContext(SearchContext);
 
-  return (
-    <>
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
-          <Toolbar
-            sx={{
-              backgroundColor: "#383636", // color de fondo
-              color: "white",             // color del texto
-            }}
-          >
-          
-            <div className='titulo'>
-
-              <Typography
-                variant="h6"
-                noWrap
-                component="div"
-                sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
-              >
-                <Link
-                  to="/home"
-                  style={{
-                    textDecoration: "none",
-                    color: "white",
-                  }}
-                >
-                  Home
-                </Link>
-              </Typography>
-
-              <Typography
-                variant="h6"
-                noWrap
-                component="div"
-                sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
-              >
-                <Link
-                  to="/peliculas"
-                  style={{
-                    textDecoration: "none",
-                    color: "white",
-                  }}
-                >
-                  Películas
-                </Link>
-              </Typography>
-              
-
-              <Typography
-                variant="h6"
-                noWrap
-                component="div"
-                sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
-              >
-                <Link
-                  to="/series"
-                  style={{
-                    textDecoration: "none",
-                    color: "white",
-                  }}
-                >
-                  Series
-                </Link>                
-              </Typography>
-
-            </div>
-
-            <div className='buscar-y-lista'>
-
-              <Search>
-                <SearchIconWrapper>
-                  <SearchIcon />
-                </SearchIconWrapper>
-
-                <StyledInputBase
-                    placeholder="Buscar..."
-                    value={search}
-                    onChange={(el)=>{
-                      const valor = el.target.value;
-                      setSearch(valor);
-
-                      if(valor.trim() !== ""){
-                          navigate("/buscar");
-                      } else {
-                        navigate("/home");
-                      }
-                    }}
-                    inputProps={{ "aria-label": "search" }}
-                />
-
-              </Search>
-
-              <Typography
-                  variant="h6"
-                  onClick={() => {
-                  
-                    if(MiLista.length === 0){
-                      alert("Lista vacía");
-                      return;
-                    }
-                      const elemento = document.getElementById("mi-lista");
-
-                      if(elemento){
-                          elemento.scrollIntoView({
-                              behavior: "smooth"
-                          });
-                      }
-                  }}
+    return (
+      <>
+        <Box sx={{ flexGrow: 1 }}>
+          <AppBar position="static">
+              <Toolbar
                   sx={{
-                      pt:0.5,
-                      pl:4,
-                      pr:4,
-                      ml:2,
-                      backgroundColor:"#EC1C1A",
-                      borderRadius:1,
-                      color:"white",
-                      "&:hover":{
-                          backgroundColor:"#b91413",
-                          cursor:"pointer",
-                      }
+                    backgroundColor: "#383636", // color de fondo
+                    color: "white",             // color del texto
                   }}
               >
-                Mi lista
-              </Typography>
+            
+             <div className="titulo">
 
-            </div>
+                <Typography
+                  variant="h6"
+                  noWrap
+                  component="div"
+                  sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+                >
+                  <NavLink
+                    to="/home"
+                    style={({ isActive }) => ({
+                      textDecoration: "none",
+                      color: isActive ? "orange" : "white",
+                    })}
+                  >
+                    Home
+                  </NavLink>
+                </Typography>
 
-          </Toolbar>
-        </AppBar>
-      </Box>
+                <Typography
+                  variant="h6"
+                  noWrap
+                  component="div"
+                  sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+                >
+                  <NavLink
+                    to="/peliculas"
+                    style={({ isActive }) => ({
+                      textDecoration: "none",
+                      color: isActive ? "orange" : "white",
+                    })}
+                  >
+                    Películas
+                  </NavLink>
+                </Typography>
 
-      {/* <h1>Home</h1> */}
-    </>
-  );
+                <Typography
+                  variant="h6"
+                  noWrap
+                  component="div"
+                  sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+                >
+                  <NavLink
+                    to="/series"
+                    style={({ isActive }) => ({
+                      textDecoration: "none",
+                      color: isActive ? "orange" : "white",
+                    })}
+                  >
+                    Series
+                  </NavLink>
+                </Typography>
+
+              </div>
+
+              <div className='buscar-y-lista'>
+
+                <Search>
+                  <SearchIconWrapper>
+                    <SearchIcon />
+                  </SearchIconWrapper>
+
+                  <StyledInputBase
+                      placeholder="Buscar..."
+                      value={search}
+                      onChange={(el)=>{
+                        const valor = el.target.value;
+                        setSearch(valor);
+
+                        if(valor.trim() !== ""){
+                            navigate("/buscar");
+                        } else {
+                          navigate("/home");
+                        }
+                      }}
+                      inputProps={{ "aria-label": "search" }}
+                  />
+
+                </Search>
+
+                <Typography
+                    variant="h6"
+                    onClick={() => {
+                    
+                      if(MiLista.length === 0){
+                        alert("Lista vacía");
+                        return;
+                      }
+                        const elemento = document.getElementById("mi-lista");
+
+                        if(elemento){
+                            elemento.scrollIntoView({
+                                behavior: "smooth"
+                            });
+                        }
+                    }}
+                    sx={{
+                        pt:0.5,
+                        pl:4,
+                        pr:4,
+                        ml:2,
+                        backgroundColor:"#EC1C1A",
+                        borderRadius:1,
+                        color:"white",
+                        "&:hover":{
+                            backgroundColor:"#b91413",
+                            cursor:"pointer",
+                        }
+                    }}
+                >
+                  Mi lista
+                </Typography>
+
+              </div>
+
+            </Toolbar>
+          </AppBar>
+        </Box>
+
+        {/* <h1>Home</h1> */}
+      </>
+    );
 };
 
 export default Navbar;

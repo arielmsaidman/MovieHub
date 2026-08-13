@@ -20,4 +20,3 @@ const db = getFirestore(app);
 
 // Exportar la instancia de Firestore para usar en componentes
 export { db };
-// export default app;
