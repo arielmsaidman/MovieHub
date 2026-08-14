@@ -4,6 +4,7 @@ import {collection, getDocs,} from "firebase/firestore";
 import { db } from "../../Componentes/firebase/firebase";
 import Card from "../../Componentes/Card/Card";
 import "./BuscarContenido.css";
+import Loading from "../../Componentes/Loading/Loading";
 
 const BuscarContenido = () => {
   const { search } = useContext(SearchContext);
@@ -48,7 +49,7 @@ const BuscarContenido = () => {
       );
 
   if (loading) {
-    return <p>Cargando...</p>;
+    return <Loading />;
   }
 
   if (error) {

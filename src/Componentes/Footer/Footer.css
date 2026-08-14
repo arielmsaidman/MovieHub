@@ -1,0 +1,83 @@
+.titulo{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: 1px;
+} 
+
+.fondo-footer {
+  width: 100%;
+  background-color: #272727;
+  color: white;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+  padding: 50px 8%;
+  box-sizing: border-box;
+  border-top: 15px solid rgb(131, 131, 131);
+  padding-top: 40px;
+  padding-left: 60px;
+  align-items: center;
+text-align: center;
+}
+
+.footer-logo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.footer-logo p {
+  color: #bdbdbd;
+  max-width: 250px;
+  line-height: 1.5;
+}
+
+.alineacion{
+    display: flex;
+    justify-content:space-between;
+    gap:100px;
+    margin-left: 120px;
+}
+
+.footer-seccion {
+   display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+  width: 120px;
+}
+
+.footer-seccion h4 {
+  margin-bottom: 10px;
+  color: #ff8c08;
+  font-size: 18px;
+  text-align: left;
+}
+
+.footer-seccion a {
+  display: block;
+  width: 100%;
+  color: #d0d0d0;
+  text-decoration: none;
+  padding: 5px 10px;
+  box-sizing: border-box;
+  transition: 0.2s;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.footer-seccion a:hover {
+  color: #ff8c08;
+  background-color: #333;
+}
+
+.footer-bottom {
+  background-color: #1d1d1d;
+  color: #999;
+  text-align: center;
+  padding: 15px;
+  font-size: 14px;
+}
+

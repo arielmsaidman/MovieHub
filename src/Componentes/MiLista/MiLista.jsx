@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { MiListaContext } from "../../context/MiListaContext";
 import Button from "@mui/material/Button";
 import "./MiLista.css";
+import Loading from "../../Componentes/Loading/Loading";
 
 const MiLista = () => {
  const { contenido, loading, error } = useFetch();
@@ -13,7 +14,7 @@ const MiLista = () => {
     console.log("loading:", loading);
     console.log("error:", error);
 
-    if (loading) return <p>loading</p>;
+    if (loading) return <Loading />;
 
     if (error) return <p>{error}</p>;
 
@@ -29,7 +30,6 @@ const MiLista = () => {
             <h2>Mi Lista</h2>
             <span>{MiLista.length}</span>
         </div>
-        {/* <h2 className="lista">Mi Lista | {MiLista.length}</h2> */}
 
         <div className="grid">
             {
@@ -41,18 +41,18 @@ const MiLista = () => {
             ))
             }
         </div>
-        
-        <div style={{ display: "flex", justifyContent: "center" }}>
+
+        <div style={{ display: "flex", backgroundColor: "black", justifyContent: "center" }}>
             <Button
                 onClick={Clear}
                 variant="contained"
                 sx={{
-                pt: 1,
-                            mt: 2,
-                            pl: 30,
-                            pr: 30,
-                            ml: 30,
-                            mr: 30,
+                    pt: 1,
+                    mb: 4,
+                    pl: 30,
+                    pr: 30,
+                    ml: 30,
+                    mr: 30,
                 backgroundColor: "#b65704",
                 boxShadow: 3,
                 "&:hover": {
@@ -65,7 +65,6 @@ const MiLista = () => {
         </div>
        
           </>
-        
         )
         }
     </>     

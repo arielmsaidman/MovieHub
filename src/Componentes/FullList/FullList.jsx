@@ -1,5 +1,6 @@
 import Card from '../Card/Card';
 import "./FullList.css";
+import Loading from "../../Componentes/Loading/Loading";
 // import { useFetch } from "../../hooks/useFetch";
 
 const FullList = ({ contenido, loading, error }) => {
@@ -8,7 +9,7 @@ const FullList = ({ contenido, loading, error }) => {
     console.log("loading:", loading);
     console.log("error:", error);
 
-    if (loading) return <p>loading</p>;
+    if (loading) return <Loading />;
 
     if (error) return <p>{error}</p>;
 
