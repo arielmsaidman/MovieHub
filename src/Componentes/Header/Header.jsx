@@ -1,38 +1,44 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Header.css";
 import moviehublogo from "../../assets/moviehublogo.png";
 import { Link, useLocation } from "react-router-dom";
+import { UsuarioContext } from "../../context/UsuarioContext";
 
 const Header = ({ children }) => {
 
   const location = useLocation();
 
+  const { nombre } = useContext(UsuarioContext);
+  console.log("nombre:", nombre);
+
   return (
-      <header className="imagen">
-          <Link to="/home">
-              <img
-                src={moviehublogo}
-                alt="MovieHub"
-                width="250"/>
-          </Link>
+    <header className="imagen">
 
-        {children}
+      <Link to="/home">
+        <img
+          src={moviehublogo}
+          alt="MovieHub"
+          width="250"
+        />
+      </Link>
 
-        {location.pathname === "/" && (
-            <Link to="/registrarse">
-                <button className="boton-login">Iniciar Sesión</button>
-            </Link>
-        )}
-        {/* asociado a Nologin, solo aparece en esa pestaña */}
+      {children}
 
+      {location.pathname === "/" && (
+        <Link to="/registrarse">
+          <button className="boton-login">
+            Iniciar Sesión
+          </button>
+        </Link>
+      )}
 
-        {location.pathname === "/home" && (
-          // <Link to="/registrarse">
-            <button className="boton-login">Hola,...</button>
-          // </Link>
-        )}
+      {location.pathname === "/home" && (
+        <button className="boton-login">
+          Hola {nombre || "Usuario"}
+        </button>
+      )}
 
-      </header>
+    </header>
   );
 };
 

@@ -6,6 +6,8 @@ import { useContext } from "react";
 import { MiListaContext } from "../../context/MiListaContext";
 import "./Card.css";
 import Rating from "@mui/material/Rating";
+// import Toastify from "toastify-js";
+// import "toastify-js/src/toastify.css";
 
 const Card = ({ data }) => {
   console.log("CARD:", data);
@@ -69,34 +71,49 @@ const Card = ({ data }) => {
           {data.genero?.join(" | ")}
         </Typography>
 
-        <Typography
-            variant="h6"
-            noWrap
-            onClick={() => AddItem(data)}
-            component="div"
-            sx={{
-              pt: 0.5,
-              mt: 1,
-              pl: 1,
-              pr: 1,
-              ml: 0,
+       <Typography
+        variant="h6"
+        noWrap
+
+            onClick={() => {
+              AddItem(data);
+  
+
+            // Toastify({
+            //   text: "Agregado a Mi Lista!",
+            //             duration: 3000,
+            //             close: true,
+            //             gravity: "bottom",
+            //             position: "center",
+            //             stopOnFocus: true,
+            //             style: {
+            //             background: "linear-gradient(to right, #EC1C1A, #b65704)",
             
-              color: "white",
-              backgroundColor: "#b65704",
-              borderRadius: 1,
-              boxShadow: 3,
-              display: { xs: "none", sm: "block" },
-              
-              "&:hover": {
-                  backgroundColor: "#ff8c08",
-                  cursor: "pointer",
-                },
-              }
-            }
-          >
-            Agregar a Mi lista
-                {/* Documentales, tendencias */}
-          </Typography>
+            //             }
+            //   }).showToast();
+            }}
+       
+        component="div"
+        sx={{
+          pt: 0.5,
+          mt: 1,
+          pl: 1,
+          pr: 1,
+          ml: 0,
+          color: "white",
+          backgroundColor: "#b65704",
+          borderRadius: 1,
+          boxShadow: 3,
+          display: { xs: "none", sm: "block" },
+
+          "&:hover": {
+            backgroundColor: "#ff8c08",
+            cursor: "pointer",
+          },
+        }}
+      >
+        Agregar a Mi lista
+      </Typography>
 
       </CardContent>
 

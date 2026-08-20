@@ -1,6 +1,7 @@
 import "./Footer.css";
 import moviehublogo from "../../assets/logo-footer.png";
 import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -8,7 +9,18 @@ const Footer = () => {
       <div className="fondo-footer">
 
         <div className="footer-logo">
-          <Link to="/home">
+          <Link 
+            to="/home"
+            onClick={() => {
+                    const elemento = document.getElementById("navbar");
+
+                    if (elemento) {
+                      elemento.scrollIntoView({
+                        behavior: "smooth",
+                      });
+                    }
+                  }}    
+          >
             <img
               src={moviehublogo}
               alt="MovieHub"
@@ -23,13 +35,56 @@ const Footer = () => {
         
         <div className="alineacion">
 
-            <div className="footer-seccion">
+          <div className="footer-seccion">
             <h4>Navegación</h4>
 
-            <Link to="/home">Inicio</Link>
-            <Link to="/peliculas">Películas</Link>
-            <Link to="/series">Series</Link>
-            </div>
+              <Link
+                  to="/home"
+                  onClick={() => {
+                    const elemento = document.getElementById("navbar");
+
+                    if (elemento) {
+                      elemento.scrollIntoView({
+                        behavior: "smooth",
+                      });
+                    }
+                  }}    
+              >
+                Inicio
+              </Link>
+
+              <Link 
+                  to="/peliculas"
+                  onClick={() => {
+                    const elemento = document.getElementById("navbar");
+
+                    if (elemento) {
+                      elemento.scrollIntoView({
+                        behavior: "smooth",
+                      });
+                    }
+                  }}  
+              >
+                Películas
+              </Link>
+              
+              
+              <Link 
+                  to="/series"
+                  onClick={() => {
+                    const elemento = document.getElementById("navbar");
+
+                    if (elemento) {
+                      elemento.scrollIntoView({
+                        behavior: "smooth",
+                      });
+                    }
+                  }}  
+              >
+                Series
+              </Link>
+            
+          </div>
 
 
 

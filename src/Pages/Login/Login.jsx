@@ -1,19 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./Login.css";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { UsuarioContext } from "../../context/UsuarioContext";
 
 const Login = () => {
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const { setNombre } = useContext(UsuarioContext);
+
+  const [nombreInput, setNombreInput] = useState("");
 
   const handleSubmit = (el) => {
     el.preventDefault();
 
-    console.log("Email:", email);
-    console.log("Password:", password);
-
-    
+    if (nombreInput.trim().length > 0) {
+      setNombre(nombreInput);
+      navigate("/home");
+    } else {
+      alert("Debe ingresar un nombre");
+    }
   };
 
   return (
@@ -21,27 +27,21 @@ const Login = () => {
 
       <form className="login-form" onSubmit={handleSubmit}>
 
-        <h1 className="iniciar-sesion">Iniciar Sesión</h1>
+        <h1 className="iniciar-sesion">
+          Iniciar Sesión
+        </h1>
 
-        <input className="input"
-          type="email"
-          placeholder="Correo electrónico"
-          value={email}
-          onChange={(el) => setEmail(el.target.value)}
+        <input
+          className="input"
+          type="text"
+          placeholder="Nombre"
+          value={nombreInput}
+          onChange={(el) => setNombreInput(el.target.value)}
         />
 
-        <input className="input"
-          type="password"
-          placeholder="Contraseña"
-          value={password}
-          onChange={(el) => setPassword(el.target.value)}
-        />
-
-        <Link to="/home">
-          <button type="submit">
-            Iniciar Sesión
-          </button>
-        </Link>
+        <button type="submit">
+          Iniciar Sesión
+        </button>
 
         <p>
           ¿No tienes cuenta? <span>Regístrate</span>
