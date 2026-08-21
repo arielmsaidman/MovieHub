@@ -1,0 +1,39 @@
+.fondoCard {
+  min-height: calc(100vh - 80px);
+  width: 100%;
+  background-color: black;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+.presentacion {
+  display: flex;
+  align-items: stretch;
+  gap: 35px;
+}
+
+.imagen-presentacion {
+  width: 400px !important;
+  height: 600px !important;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+/* .contenido-presentacion {
+  padding: 35px !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+} */
+ .contenido-presentacion {
+  padding: 35px !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.contenido-presentacion .MuiTypography-root {
+  font-family: "Century Gothic", sans-serif;
+}

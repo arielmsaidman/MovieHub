@@ -32,7 +32,12 @@ const Header = ({ children }) => {
         </Link>
       )}
 
-      {location.pathname === "/home" && (
+      {(
+        location.pathname === "/home" ||
+        location.pathname === "/series" ||
+        location.pathname === "/peliculas" ||
+        location.pathname.startsWith("/peliculas/")
+      ) && (
         <button className="boton-login">
           Hola {nombre || "Usuario"}
         </button>

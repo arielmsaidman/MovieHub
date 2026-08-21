@@ -15,6 +15,7 @@ import { SearchProvider } from "./context/SearchContext";
 import BuscarContenido from "./pages/BuscarContenido/BuscarContenido";
 import LayoutConNavbar from "./Layout/LayoutConNavbar";
 import LayoutPublico from "./Layout/LayoutPublico";
+import PresentationCard from "./Pages/PresentationCard/PresentacionCard";
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
             <Route path="/buscar" element={<BuscarContenido />}/>
             <Route path="/peliculas" element={<Peliculas />}/>
             <Route path="/series" element={<Series />}/>
+            <Route path="/presentacion/:id" element={<PresentationCard />}/>
           </Route>
 
           {/* Rutas sin Navbar */}

@@ -6,6 +6,7 @@ import { useContext } from "react";
 import { MiListaContext } from "../../context/MiListaContext";
 import "./Card.css";
 import Rating from "@mui/material/Rating";
+import { useNavigate } from "react-router-dom";
 // import Toastify from "toastify-js";
 // import "toastify-js/src/toastify.css";
 
@@ -13,6 +14,7 @@ const Card = ({ data }) => {
   console.log("CARD:", data);
 
  const { AddItem } = useContext(MiListaContext);
+ const navigate = useNavigate();
 
   return (
     ////"#979595" #686868
@@ -26,7 +28,9 @@ const Card = ({ data }) => {
             transform: "scale(1.02)",
             cursor: "pointer",
           },
-      }}>
+      }}
+        onClick={() => navigate(`/presentacion/${data.id}`)}
+        >
 
       <CardMedia
         sx={{
@@ -34,7 +38,7 @@ const Card = ({ data }) => {
           cursor: "pointer",
         }}
         image={data.imagen}
-        onClick={() => window.open(data.trailer, "_blank")}
+        // onClick={() => window.open(data.trailer, "_blank")}
       />
 
       <CardContent sx={{  borderTop: "3px solid orange", height: 170  }}>
@@ -75,23 +79,10 @@ const Card = ({ data }) => {
         variant="h6"
         noWrap
 
-            onClick={() => {
-              AddItem(data);
-  
-
-            // Toastify({
-            //   text: "Agregado a Mi Lista!",
-            //             duration: 3000,
-            //             close: true,
-            //             gravity: "bottom",
-            //             position: "center",
-            //             stopOnFocus: true,
-            //             style: {
-            //             background: "linear-gradient(to right, #EC1C1A, #b65704)",
-            
-            //             }
-            //   }).showToast();
-            }}
+        onClick={(e) => {
+          e.stopPropagation();
+          AddItem(data);
+        }}
        
         component="div"
         sx={{
